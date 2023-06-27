@@ -1,0 +1,86 @@
+<div class="container mt-4">
+  <div class="row">
+    <h3>Listado de estudiantes</h3>
+  </div>
+
+  <br />
+
+  <table class="table" *ngIf="listStudents.length > 0">
+    <thead>
+      <th>No.</th>
+      <th>Name</th>
+      <th>State</th>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let student of listStudents; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ student.name }}</td>
+        <td
+          [ngStyle]="{
+            'font-style': student.state === 'Promocionado' ? 'italic' : 'normal'
+          }"
+        >
+          {{ student.state }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <table class="table" *ngIf="listStudents.length > 0">
+    <thead>
+      <th>No.</th>
+      <th>Name</th>
+      <th>State</th>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let student of listStudents; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ student.name }}</td>
+        <td>
+          <span
+            [ngClass]="
+              student.state === 'Promocionado'
+                ? 'badge bg-success'
+                : 'badge bg-secondary'
+            "
+          >
+            {{ student.state }}
+          </span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <table class="table" *ngIf="listStudents.length > 0">
+    <thead>
+      <th>No.</th>
+      <th>Name</th>
+      <th>State</th>
+    </thead>
+
+    <tbody>
+      <tr
+        *ngFor="let student of listStudents; let i = index"
+        [ngSwitch]="student.state"
+      >
+        <td>{{ i + 1 }}</td>
+        <td>{{ student.name }}</td>
+        <td>
+          <span *ngSwitchCase="'Promocionado'" class="badge bg-success">
+            {{ student.state }}
+          </span>
+          <span *ngSwitchCase="'Regular'" class="badge bg-secondary">
+            {{ student.state }}
+          </span>
+          <span *ngSwitchCase="'Libre'" class="badge bg-primary">
+            {{ student.state }}
+          </span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3 *ngIf="listStudents.length === 0">No hay registros para mostrar...</h3>
+</div>
